@@ -13,44 +13,9 @@ spec:
       labels:
         app: macula-console
     spec:
-      initContainers:
-      - name: wait-for-db
-        image: postgres:16-alpine
-        command:
-        - sh
-        - -c
-        - |
-          until pg_isready -h console-db -p 5432 -U postgres; do
-            echo "Waiting for database..."
-            sleep 2
-          done
-      - name: migrate
-        image: kind-registry:5000/macula/console:latest
-        imagePullPolicy: Always
-        command:
-        - /bin/sh
-        - -c
-        - |
-          bin/macula_console eval "MaculaConsole.Release.migrate()"
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: console-config
-              key: DATABASE_URL
-        - name: SECRET_KEY_BASE
-          valueFrom:
-            secretKeyRef:
-              name: console-secret
-              key: SECRET_KEY_BASE
-        - name: POOL_SIZE
-          valueFrom:
-            configMapKeyRef:
-              name: console-config
-              key: POOL_SIZE
       containers:
       - name: console
-        image: kind-registry:5000/macula/console:latest
+        image: localhost:5001/macula/console:latest
         imagePullPolicy: Always
         ports:
         - name: http

@@ -7,7 +7,6 @@ resources:
   - namespace.yaml
   - configmap.yaml
   - secret.yaml
-  - postgres.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
