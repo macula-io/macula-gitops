@@ -6,7 +6,7 @@ metadata:
   labels:
     app: macula-bootstrap
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: quic
     port: 4433
