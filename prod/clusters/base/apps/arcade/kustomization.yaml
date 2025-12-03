@@ -4,8 +4,6 @@ kind: Kustomization
 namespace: macula
 
 resources:
-  - configmap.yaml
-  - secret.yaml
+  - namespace.yaml
   - deployment.yaml
   - service.yaml
-  - ingress.yaml

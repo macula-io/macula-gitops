@@ -1,0 +1,33 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: macula
+
+resources:
+  - ../../../base/apps/arcade
+
+patches:
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: PEER_ID
+          value: "beam00"
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: BOOTSTRAP_URL
+          value: "quic://bootstrap.macula.local:4433"
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: MACULA_NODE_NAME
+          value: "beam00.lab"
+    target:
+      kind: Deployment
+      name: macula-arcade
+
+labels:
+  - pairs:
+      cluster: beam00
+      environment: prod

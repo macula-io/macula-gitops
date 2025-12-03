@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: macula-arcade
+  namespace: macula
+  labels:
+    app: macula-arcade
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 4000
+    targetPort: 4000
+    protocol: TCP
+  - name: quic
+    port: 4433
+    targetPort: 4433
+    protocol: UDP
+  selector:
+    app: macula-arcade

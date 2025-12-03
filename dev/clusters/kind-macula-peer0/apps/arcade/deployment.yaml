@@ -30,6 +30,10 @@ spec:
           value: "http://bootstrap.macula.local"
         - name: PEER_ID
           value: "peer0"
+        - name: MACULA_CERT_PATH
+          value: "/opt/macula/certs/cert.pem"
+        - name: MACULA_KEY_PATH
+          value: "/opt/macula/certs/key.pem"
         livenessProbe:
           httpGet:
             path: /

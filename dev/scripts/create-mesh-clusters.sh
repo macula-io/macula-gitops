@@ -16,8 +16,9 @@ print_info() {
 }
 
 # Cluster configurations
+# Hub uses ports 8000/8080 since host nginx is on 80/443
 declare -A CLUSTERS=(
-    ["kind-macula-hub"]="80:80,443:443"
+    ["kind-macula-hub"]="8000:80,8080:443"
     ["kind-macula-peer0"]="8001:80,8443:443"
     ["kind-macula-peer1"]="8002:80,8444:443"
     ["kind-macula-peer2"]="8003:80,8445:443"
