@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neurolab
+  namespace: macula
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neurolab
+  template:
+    metadata:
+      labels:
+        app: neurolab
+    spec:
+      containers:
+      - name: neurolab
+        image: macula-registry:5000/macula/neurolab:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 4000
+          protocol: TCP
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: PORT
+        - name: PHX_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: PHX_HOST
+        - name: PHX_SERVER
+          value: "true"
+        - name: DATABASE_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: DATABASE_PATH
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: neurolab-secret
+              key: SECRET_KEY_BASE
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: LOG_LEVEL
+        - name: NEUROLAB_DEV_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: NEUROLAB_DEV_MODE
+        - name: AI_INTERPRETATION_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: neurolab-config
+              key: AI_INTERPRETATION_ENABLED
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "2Gi"
+            cpu: "2000m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 4000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 4000
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 3
+        volumeMounts:
+        - name: data
+          mountPath: /home/app/data
+      volumes:
+      - name: data
+        emptyDir: {}
