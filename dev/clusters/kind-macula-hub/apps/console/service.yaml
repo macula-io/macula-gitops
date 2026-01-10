@@ -4,7 +4,7 @@ metadata:
   name: macula-console
   namespace: macula
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     port: 80
