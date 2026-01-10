@@ -10,3 +10,6 @@ data:
   # Mesh configuration - connect to public bootstrap service
   MACULA_BOOTSTRAP_PEERS: "https://boot.macula.io:443"
   MACULA_REALM: "io.macula"
+  # Offline mode - disable mesh connection for local testing
+  # TODO: Remove this when boot.macula.io is accessible from cluster
+  MACULA_OFFLINE: "true"

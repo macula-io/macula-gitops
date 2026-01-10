@@ -47,6 +47,11 @@ spec:
             configMapKeyRef:
               name: console-config
               key: MACULA_REALM
+        - name: MACULA_OFFLINE
+          valueFrom:
+            configMapKeyRef:
+              name: console-config
+              key: MACULA_OFFLINE
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
