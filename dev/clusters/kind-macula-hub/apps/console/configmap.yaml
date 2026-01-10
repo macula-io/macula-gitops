@@ -7,3 +7,6 @@ data:
   PORT: "4000"
   PHX_HOST: "console.macula.local"
   DATABASE_PATH: "/app/data/macula_cluster.db"
+  # Mesh configuration - connect to public bootstrap service
+  MACULA_BOOTSTRAP_PEERS: "https://boot.macula.io:443"
+  MACULA_REALM: "io.macula"

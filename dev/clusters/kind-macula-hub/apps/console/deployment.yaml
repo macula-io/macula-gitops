@@ -37,6 +37,16 @@ spec:
             configMapKeyRef:
               name: console-config
               key: DATABASE_PATH
+        - name: MACULA_BOOTSTRAP_PEERS
+          valueFrom:
+            configMapKeyRef:
+              name: console-config
+              key: MACULA_BOOTSTRAP_PEERS
+        - name: MACULA_REALM
+          valueFrom:
+            configMapKeyRef:
+              name: console-config
+              key: MACULA_REALM
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
