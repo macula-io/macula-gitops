@@ -16,6 +16,10 @@ nodes:
   - containerPort: 443
     hostPort: 8443
     protocol: TCP
+  extraMounts:
+  - hostPath: /home/rl/work
+    containerPath: /home/rl/work
+    readOnly: true
 containerdConfigPatches:
 - |-
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."macula-registry:5000"]
