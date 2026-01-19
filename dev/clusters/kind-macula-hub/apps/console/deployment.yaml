@@ -10,6 +10,8 @@ spec:
       app: macula-console
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/restartedAt: "2026-01-19T12:00:00Z"
       labels:
         app: macula-console
     spec:
