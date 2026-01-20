@@ -11,13 +11,13 @@ spec:
   template:
     metadata:
       annotations:
-        kubectl.kubernetes.io/restartedAt: "2026-01-20T21:10:00Z"
+        kubectl.kubernetes.io/restartedAt: "2026-01-20T20:17:18Z"
       labels:
         app: macula-console
     spec:
       containers:
       - name: console
-        image: maculacid/macula-console:d68b668
+        image: maculacid/macula-console:98ff7aa
         imagePullPolicy: Always
         ports:
         - name: http
